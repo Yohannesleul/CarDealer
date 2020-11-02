@@ -47,7 +47,12 @@ namespace CarDealership.Controllers
         public async Task<ActionResult<IEnumerable<Car>>> GetCar(bool hasSunRoof, bool isFourWheelDrive, bool powerWindows, bool hasLowMiles, bool hasNavigation, bool hasHeatedSeat)
         {
             //var car = await _context.cars.FindAsync(id);
-            var car = await _context.cars.Where(x => x.HasHeatedSeat == hasSunRoof && x.IsFourWheelDrive == isFourWheelDrive && x.HasPowerWindws == powerWindows && x.HasLowMiles == hasLowMiles && x.HasNavigation == hasNavigation && x.HasHeatedSeat == hasHeatedSeat).ToListAsync();
+            var car = await _context.cars.Where(x => x.HasHeatedSeat == hasSunRoof 
+            && x.IsFourWheelDrive == isFourWheelDrive 
+            && x.HasPowerWindws == powerWindows 
+            && x.HasLowMiles == hasLowMiles 
+            && x.HasNavigation == hasNavigation 
+            && x.HasHeatedSeat == hasHeatedSeat).ToListAsync();
 
             if (car == null)
             {
