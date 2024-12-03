@@ -22,6 +22,7 @@ namespace CarDealership
         {
             services.AddDbContext<CarContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -32,6 +33,7 @@ namespace CarDealership
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors("AllowAll");
 
             app.UseHttpsRedirection();
 
@@ -46,6 +48,10 @@ namespace CarDealership
 
             //Intializing the data loading during start up
             SampleData.Intialize(app);
+            app.UseCors(builder => builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
         }
     }
 }
